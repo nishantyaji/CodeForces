@@ -1,3 +1,4 @@
+# https://codeforces.com/problemset/problem/344/A
 sz = int(input())
 
 arr, prev, res = [], "", 0

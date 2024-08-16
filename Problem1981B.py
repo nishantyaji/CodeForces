@@ -10,7 +10,6 @@ for n_t in range(num_tests):
 # The problem boils down to computing
 # or(l....r) l <= r
 # where l ... r are consecutive numbers
-
 # tests = [
 #     [0, 0],
 #     [0, 1],

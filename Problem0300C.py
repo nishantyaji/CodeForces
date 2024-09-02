@@ -10,6 +10,8 @@ for n_t in range(num_tests):
 base = 1000000007
 for [a, b, n] in tests:
 
+    # Check https://codeforces.com/blog/entry/72527
+    # for modular multiplicative inverse
     def inv_(numm: int, pw: int):
         if pw == 1:
             return numm

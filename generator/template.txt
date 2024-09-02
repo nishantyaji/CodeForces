@@ -1,4 +1,9 @@
-input_file = False
+import platform
+
+in_fn = input
+op_fn = print
+
+input_file = platform.node() and platform.node().startswith("LAPTOP-")
 if input_file:
     filename = "zzz.zzz"
     f = open(filename, "r")
@@ -14,9 +19,7 @@ if input_file:
 
 
     op_fn = check_file
-else:
-    in_fn = input
-    op_fn = print
+
 
 num_tests = int(in_fn())
 tests = []

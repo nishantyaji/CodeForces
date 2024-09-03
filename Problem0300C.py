@@ -29,12 +29,6 @@ for [a, b, n] in tests:
         return False
 
 
-    def is_excel(numm: int):
-        if not is_good(numm):
-            return False
-        return is_good(sum(map(int, list(str(numm)))))
-
-
     residues = [1] * (n + 1)
     acc = 1
     for i in range(1, n + 1):

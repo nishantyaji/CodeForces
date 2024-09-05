@@ -1,5 +1,70 @@
+import platform
+
+
+class SegmentTree:
+    def __init__(self, size: int):
+        # size = size of compressed map (= 1 + max_elem_of_compressed_map)
+        self.size = size
+        self.st = [0] * (4 * size)
+        self.invalid = -100001
+
+    def seg_op(self, left: int, right: int) -> int:
+        return max([left, right])
+
+    def update(self, place: int, val: int):
+        self._update_(0, 0, self.size, place, val)
+
+    def _update_(self, index: int, low: int, high: int, place: int, val: int):
+        if low == high:
+            self.st[index] = self.st[index] + val
+            return
+        mid = (low + high) // 2
+        if low <= place <= mid:
+            self._update_(2 * index + 1, low, mid, place, val)
+        else:
+            self._update_(2 * index + 2, mid + 1, high, place, val)
+
+        self.st[index] = self.seg_op(self.st[2 * index + 1], self.st[2 * index + 2])
+
+    def query(self, l_query: int, r_query: int):
+        return self._query_(0, 0, self.size, l_query, r_query)
+
+    def _query_(self, index: int, low: int, high: int, l_query: int, r_query: int):
+        if low >= l_query and high <= r_query:
+            return self.st[index]
+        if high < l_query or low > r_query:
+            return self.invalid
+        mid = (low + high) // 2
+        low_val = self._query_(2 * index + 1, low, mid, l_query, r_query)
+        high_val = self._query_(2 * index + 2, mid + 1, high, l_query, r_query)
+        return self.seg_op(low_val, high_val)
+
+
+class MaxSortedListThroughSegmentTree:
+
+    def __init__(self, arr: list[int]):
+        self.arr = arr
+        arr_set = sorted(set(arr))
+        self.seg = SegmentTree(len(arr_set))
+        self.compress = {x: i for i, x in enumerate(arr_set)}
+
+    def add_key(self, key: int):
+        self.seg.update(self.compress[key], 1)
+
+    def rem_key(self, key: int):
+        self.seg.update(self.compress[key], -1)
+
+    def max_key(self):
+        return self.seg.query(0, self.seg.size + 1)
+
+
 in_fn = input
 op_fn = print
+
+#
+# SortedDict a.k.a MultiSet using Segment tree and it works
+#
+
 
 num_tests = int(in_fn())
 tests = []
@@ -11,32 +76,16 @@ for n_t in range(num_tests):
         queries.append(list(map(int, in_fn().split())))
     tests.append([k, arr, queries])
 
-
-def rem_(d: dict, numm: int):
-    if numm in d:
-        if d[numm] == 1:
-            del d[numm]
-        else:
-            d[numm] = d[numm] - 1
-
-
-def add_(d: dict, numm: int):
-    if numm in d:
-        d[numm] = d[numm] + 1
-    else:
-        d[numm] = 1
-
-
 for [k, arr2, queries] in tests:
     arr = [x - i for i, x in enumerate(arr2)]
-    mp = dict()
+    mp = MaxSortedListThroughSegmentTree(arr)
     for i in range(k):
-        add_(mp, arr[i])
-    res = [k - max([v for k, v in mp.items()])]
+        mp.add_key(arr[i])
+    res = [k - mp.max_key()]
     for i in range(k, len(arr)):
-        rem_(mp, arr[i - k])
-        add_(mp, arr[i])
-        res.append((k - max([v for k, v in mp.items()])))
+        mp.rem_key(arr[i - k])
+        mp.add_key(arr[i])
+        res.append(k - mp.max_key())
 
     for [l, r] in queries:
         op_fn(res[l - 1])

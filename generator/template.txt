@@ -37,7 +37,7 @@ def read_int_arr(sep=" ") -> list[int]:
     return list(map(int, in_fn().split(sep)))
 
 
-num_tests = int(in_fn())
+num_tests = read_int()
 tests = []
 for n_t in range(num_tests):
     l = read_str()

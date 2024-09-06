@@ -21,11 +21,27 @@ if input_file:
     op_fn = check_file
 
 
+def read_str() -> str:
+    return in_fn()
+
+
+def read_int() -> int:
+    return int(in_fn())
+
+
+def read_str_arr(sep=" ") -> list[str]:
+    return in_fn().split(sep)
+
+
+def read_int_arr(sep=" ") -> list[int]:
+    return list(map(int, in_fn().split(sep)))
+
+
 num_tests = int(in_fn())
 tests = []
 for n_t in range(num_tests):
-    l = in_fn()
-    ls = list(map(int, in_fn().split()))
+    l = read_str()
+    ls = read_int_arr()
     tests.append(ls)
 
 for t in tests:

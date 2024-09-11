@@ -40,7 +40,7 @@ def read_int_arr(sep=" ") -> list[int]:
 num_tests = read_int()
 tests = []
 for n_t in range(num_tests):
-    l = read_str()
+    # l = read_str()
     ls = read_int_arr()
     tests.append(ls)
 

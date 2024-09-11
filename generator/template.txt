@@ -22,11 +22,11 @@ if input_file:
 
 
 def read_str() -> str:
-    return in_fn()
+    return in_fn().strip()
 
 
 def read_int() -> int:
-    return int(in_fn())
+    return int(in_fn().strip())
 
 
 def read_str_arr(sep=" ") -> list[str]:

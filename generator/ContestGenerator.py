@@ -3,8 +3,8 @@ import os
 
 
 def create_contest():
-    contest = "Problem2009"
-    problems = ["A", "B", "C", "D", "E", "F", "G"]
+    contest = "Problem1795"
+    problems = ["A"]
 
     os.mkdir("../contest/" + contest)
     with open("template.txt", "r") as file:

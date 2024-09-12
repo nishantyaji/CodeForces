@@ -4,7 +4,7 @@ import os
 
 def create_contest():
     contest = "Problem1795"
-    problems = ["A"]
+    problems = ["A", "B", "C", "D", "E", "F", "G"]
 
     os.mkdir("../contest/" + contest)
     with open("template.txt", "r") as file:

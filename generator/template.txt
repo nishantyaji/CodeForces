@@ -30,11 +30,11 @@ def read_int() -> int:
 
 
 def read_str_arr(sep=" ") -> list[str]:
-    return in_fn().split(sep)
+    return in_fn().strip().split(sep)
 
 
 def read_int_arr(sep=" ") -> list[int]:
-    return list(map(int, in_fn().split(sep)))
+    return list(map(int, in_fn().strip().split(sep)))
 
 
 num_tests = read_int()

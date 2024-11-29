@@ -1,25 +1,7 @@
 import math
-import platform
 
 in_fn = input
 op_fn = print
-
-input_file = platform.node() and platform.node().startswith("LAPTOP-")
-if input_file:
-    filename = "contest/Problem2035/Problem2035D.txt"
-    f = open(filename, "r")
-    in_fn = f.readline
-
-
-    def check_file(args):
-        exp = f.readline().strip()
-        if str(args) == exp:
-            print("Pass")
-        else:
-            print("Fail. Expected:", exp, "Got", args)
-
-
-    op_fn = check_file
 
 
 def read_int() -> int:

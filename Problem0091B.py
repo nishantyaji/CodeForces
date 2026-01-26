@@ -11,7 +11,7 @@ def read_int() -> int:
 def read_int_arr(sep=" ") -> list[int]:
     return list(map(int, in_fn().strip().split(sep)))
 
-
+# Can be solved using monotonic stack (from end/right to start/left of the input array)
 _ = read_int()
 arr = read_int_arr()
 arr.reverse()

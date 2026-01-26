@@ -4,16 +4,8 @@ in_fn = input
 op_fn = print
 
 
-def read_str() -> str:
-    return in_fn().strip()
-
-
 def read_int() -> int:
     return int(in_fn().strip())
-
-
-def read_str_arr(sep=" ") -> list[str]:
-    return in_fn().strip().split(sep)
 
 
 def read_int_arr(sep=" ") -> list[int]:
